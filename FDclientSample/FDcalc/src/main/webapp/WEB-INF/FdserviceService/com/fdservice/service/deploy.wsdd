@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FdserviceService WSDL service -->
+
+  <service name="Fdservice" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.fdservice.com"/>
+      <parameter name="wsdlServiceElement" value="FdserviceService"/>
+      <parameter name="schemaQualified" value="http://service.fdservice.com"/>
+      <parameter name="wsdlServicePort" value="Fdservice"/>
+      <parameter name="className" value="com.fdservice.service.Fdservice"/>
+      <parameter name="wsdlPortType" value="Fdservice"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.fdservice.com" xmlns:retNS="http://service.fdservice.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="calculateFD" qname="operNS:calculateFD" returnQName="retNS:calculateFDReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://service.fdservice.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
+        <parameter xmlns:pns="http://service.fdservice.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:noOfDays" type="tns:int"/>
+        <parameter xmlns:pns="http://service.fdservice.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ageOfACHolder" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="calculateFD"/>
+
+  </service>
+</deployment>
